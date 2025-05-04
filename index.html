@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<title>Rao Muhammad Zubair - Portfolio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+.w3-sidebar {background-color: #1e3a8a; color: white;}
+.w3-sidebar .w3-bar-item:hover {background-color: #3b82f6 !important;}
+.w3-teal {background-color: #1e40af !important;}
+.project-img {transition: transform 0.3s ease;}
+.project-img:hover {transform: scale(1.05);}
+.skill-bar {transition: width 1s ease-in-out;}
+</style>
+<body class="w3-light-grey w3-content" style="max-width:1600px">
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+    <div class="w3-container">
+        <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
+          <i class="fa fa-remove"></i>
+        </a>
+        <img src="/images/rao.jpg" style="width:45%;" class="w3-round"><br><br>
+        <h4><b>Rao Muhammad Zubair Saleem</b></h4>
+        <p class="w3-text-light-grey">Software Engineering Student</p>
+      </div>
+      
+  <div class="w3-bar-block">
+    <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa fa-user fa-fw w3-margin-right"></i>ABOUT</a> 
+    <a href="#skills" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cogs fa-fw w3-margin-right"></i>SKILLS</a>
+    <a href="#projects" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-th-large fa-fw w3-margin-right"></i>PROJECTS</a>
+    <a href="#education" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-graduation-cap fa-fw w3-margin-right"></i>EDUCATION</a>
+    <a href="#experience" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-briefcase fa-fw w3-margin-right"></i>EXPERIENCE</a>
+    <a href="#certifications" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-certificate fa-fw w3-margin-right"></i>CERTIFICATIONS</a>
+    <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-envelope fa-fw w3-margin-right"></i>CONTACT</a>
+  </div>
+  <div class="w3-panel w3-large">
+    <a href="https://linkedin.com/in/rao-muhammad-zubair" target="_blank"><i class="fa fa-linkedin w3-hover-text-blue"></i></a>
+  </div>
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-right" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px">
+
+  <!-- Header -->
+  <header id="portfolio" class="w3-animate-top">
+    <a href="#"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e" style="width:65px;" class="w3-circle w3-right w3-margin w3-hide-large"></a>
+    <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+    <div class="w3-container w3-padding-32">
+      <h1><b>Rao Muhammad Zubair Saleem</b></h1>
+      <p class="w3-text-black"><b>Software Engineering Student | Python, Java, Web Developer</b></p>
+    </div>
+  </header>
+  
+  <!-- About Section -->
+  <div class="w3-container w3-padding-large w3-animate-top" id="about">
+    <h3><b>About Me</b></h3>
+    <p>
+      I’m a Software Engineering student at NUTECH University, passionate about building innovative software solutions. 
+      With expertise in Python, Java, C++, and web development, I create user-friendly applications and leverage AI to solve real-world problems. 
+      My projects, like food and music recommendation systems, showcase my ability to combine technical skills with creativity. 
+      I thrive in collaborative environments and am eager to contribute to cutting-edge technologies.
+    </p>
+    <hr>
+    
+    <!-- Skills Section -->
+    <h3 id="skills"><b>Technical Skills</b></h3>
+    <div class="w3-row-padding w3-animate-zoom">
+      <div class="w3-col m6">
+        <p>Python</p>
+        <div class="w3-grey"><div class="w3-container w3-dark-grey w3-padding w3-center skill-bar" style="width:0%" data-width="90%">90%</div></div>
+        <p>Java</p>
+        <div class="w3-grey"><div class="w3-container w3-dark-grey w3-padding w3-center skill-bar" style="width:0%" data-width="85%">85%</div></div>
+        <p>C++</p>
+        <div class="w3-grey"><div class="w3-container w3-dark-grey w3-padding w3-center skill-bar" style="width:0%" data-width="80%">80%</div></div>
+        <p>SQL</p>
+        <div class="w3-grey"><div class="w3-container w3-dark-grey w3-padding w3-center skill-bar" style="width:0%" data-width="85%">85%</div></div>
+      </div>
+      <div class="w3-col m6">
+        <p>Django</p>
+        <div class="w3-grey"><div class="w3-container w3-dark-grey w3-padding w3-center skill-bar" style="width:0%" data-width="80%">80%</div></div>
+        <p>JavaScript</p>
+        <div class="w3-grey"><div class="w3-container w3-dark-grey w3-padding w3-center skill-bar" style="width:0%" data-width="75%">75%</div></div>
+        <p>MySQL</p>
+        <div class="w3-grey"><div class="w3-container w3-dark-grey w3-padding w3-center skill-bar" style="width:0%" data-width="80%">80%</div></div>
+        <p>Figma</p>
+        <div class="w3-grey"><div class="w3-container w3-dark-grey w3-padding w3-center skill-bar" style="width:0%" data-width="70%">70%</div></div>
+      </div>
+    </div>
+    <p class="w3-margin-top"><b>Additional Skills: Data Structures, OOP, Database Management, AI, Networking, Cisco Packet Tracer, Wireshark, Canva</b></p>
+    <p>
+      <button class="w3-button w3-dark-grey w3-padding-large w3-margin-top w3-margin-bottom">
+        <i class="fa fa-download w3-margin-right"></i><a href="D:\projects\personal portfolio\images\zubair CV.pdf" download>Download CV</a>
+      </button>
+    </p>
+    <hr>
+    
+    <!-- Projects Section -->
+    <h3 id="projects"><b>Projects</b></h3>
+    <div class="w3-row-padding">
+      <div class="w3-third w3-container w3-margin-bottom w3-animate-left">
+        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd" alt="Food Recommendation System" style="width:100%" class="project-img">
+        <div class="w3-container w3-white">
+          <p><b>Food Recommendation System</b></p>
+          <p>A machine learning-based system using Python and scikit-learn to suggest personalized meal options, achieving 85% accuracy.</p>
+        </div>
+      </div>
+      <div class="w3-third w3-container w3-margin-bottom w3-animate-left">
+        <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819" alt="Music Recommendation System" style="width:100%" class="project-img">
+        <div class="w3-container w3-white">
+          <p><b>Music Recommendation System</b></p>
+          <p>Built with Python and SQL, integrating Spotify API, with an optimized database for 1,000+ entries.</p>
+        </div>
+      </div>
+      <div class="w3-third w3-container w3-margin-bottom w3-animate-left">
+        <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2" alt="Property Rental Web Application" style="width:100%" class="project-img">
+        <div class="w3-container w3-white">
+          <p><b>Property Rental Web Application</b></p>
+          <p>A Django-based web app with MySQL, HTML, CSS, and JavaScript for browsing and listing rental properties.</p>
+        </div>
+      </div>
+    </div>
+    <div class="w3-row-padding">
+      <div class="w3-third w3-container w3-margin-bottom w3-animate-right">
+        <img src="D:\projects\personal portfolio\images\e-commerce.jpg" alt="E-Commerce Platform Prototype" style="width:100%" class="project-img">
+        <div class="w3-container w3-white">
+          <p><b>E-Commerce Platform Prototype</b></p>
+          <p>A CLI-based platform using Java and SQL, featuring product listings and order processing.</p>
+        </div>
+      </div>
+      <div class="w3-third w3-container w3-margin-bottom w3-animate-right">
+        <img src="D:\projects\personal portfolio\images\dominos-pizza-website.jpg" alt="Domino's Website Clone" style="width:100%" class="project-img">
+        <div class="w3-container w3-white">
+          <p><b>Domino's Website Clone</b></p>
+          <p>A responsive website clone using Figma, replicating Domino's UI with enhanced features.</p>
+        </div>
+      </div>
+      
+    </div>
+    <hr>
+    
+    <!-- Education Section -->
+    <div class="w3-container w3-margin-bottom w3-animate-top" id="education">
+      <h3><b>Education</b></h3>
+      <div class="w3-container w3-margin-bottom">
+        <p><b>B.Sc. in Software Engineering</b></p>
+        <p>National University of Technology (NUTECH), Islamabad | 2023 - Present</p>
+        <p>Coursework: Data Structures, OOP, DBMS, AI, Networking, Information Security</p>
+      </div>
+      <div class="w3-container w3-margin-bottom">
+        <p><b>FSC Pre-Engineering</b></p>
+        <p>Govt. Model Science College, Muzaffarabad, Kashmir | 2020 - 2022</p>
+      </div>
+      <div class="w3-container w3-margin-bottom">
+        <p><b>Matriculation (Science)</b></p>
+        <p>Green Leads School System, Rawalpindi | 2018 - 2020</p>
+      </div>
+      <div class="w3-container w3-margin-bottom">
+        <p><b>Hifz-ul-Quran</b></p>
+        <p>Madrassa Medinah-tul-Uloom, Juharabad | 2015 - 2018</p>
+      </div>
+    </div>
+    <hr>
+    
+    <!-- Experience Section -->
+    <div class="w3-container w3-margin-bottom w3-animate-top" id="experience">
+      <h3><b>Experience</b></h3>
+      <div class="w3-container w3-margin-bottom">
+        <p><b>Management Team Member (Volunteer)</b></p>
+        <p>NUTECH Punjab Student Council, Islamabad | 2024 - Present</p>
+        <p>Organized 5+ university events, increasing attendance by 20%. Planned technical workshops, ensuring efficient resource allocation.</p>
+      </div>
+    </div>
+    <hr>
+    
+   <!-- Certifications Section -->
+<div class="w3-container w3-margin-bottom w3-animate-top" id="certifications">
+    <h3><b>Certifications</b></h3>
+    <div class="w3-container w3-margin-bottom">
+      <p>AWS Cloud Technical Essentials, Amazon Web Services (Coursera), 2025</p>
+      <p>Prompt Engineering for Everyone, IBM Developer Skills Network, 2024</p>
+      <p>Organizational Behavior: How to Manage People, IESE Business School (Coursera), 2025</p>
+    </div>
+  </div>
+  
+  
+<div class="w3-container w3-row-padding w3-margin-bottom">
+  
+    <!-- Interests Section -->
+    <div class="w3-third w3-container w3-margin-bottom w3-animate-left">
+        <h3><b>INTERESTS</b></h3>
+      <img src="D:\projects\personal portfolio\images\books.jpg" class="project-img w3-hover-opacity" style="width:100%" alt="Literature">
+      <div class="w3-container w3-white">
+        <p><b>Literature</b></p>
+        <p>Reading Urdu, Islamic, and technical books.</p>
+      </div>
+    </div>
+  
+    <div class="w3-third w3-container w3-margin-bottom w3-animate-left">
+      <img src="D:\projects\personal portfolio\images\mic.jpg" class="project-img w3-hover-opacity" style="width:100%" alt="Public Speaking">
+      <div class="w3-container w3-white">
+        <p><b>Public Speaking</b></p>
+        <p>Delivering motivational and academic speeches.</p>
+      </div>
+    </div>
+  
+    <div class="w3-third w3-container w3-margin-bottom w3-animate-left">
+      <img src="D:\projects\personal portfolio\images\badminton.jpg" class="project-img w3-hover-opacity" style="width:100%" alt="Badminton">
+      <div class="w3-container w3-white">
+        <p><b>Badminton</b></p>
+        <p>Playing and participating in local matches.</p>
+      </div>
+    </div>
+   <!-- Languages Section -->
+   <div class="w3-container w3-margin-bottom w3-animate-top" id="certifications">
+    <h3><b>Languages</b></h3>
+    <p>Urdu (Native), English (Conversational), Punjabi (Fluent)</p>
+  </div>
+
+  </div>
+  
+  
+  
+  <!-- Contact Section -->
+<div class="w3-container w3-padding-large w3-grey w3-animate-bottom" id="contact">
+    <h4><b>Contact Me</b></h4>
+    <div class="w3-row-padding w3-center w3-padding-24" style="margin:0 -16px">
+      <div class="w3-third w3-dark-grey">
+        <p><i class="fa fa-envelope w3-xxlarge w3-text-light-grey"></i></p>
+        <p><a href="mailto:raozubair8899@gmail.com">raozubair8899@gmail.com</a></p>
+      </div>
+      <div class="w3-third w3-teal">
+        <p><i class="fa fa-map-marker w3-xxlarge w3-text-light-grey"></i></p>
+        <p>Rawalpindi, Pakistan</p>
+      </div>
+      <div class="w3-third w3-dark-grey">
+        <p><i class="fa fa-phone w3-xxlarge w3-text-light-grey"></i></p>
+        <p>+923218725013</p>
+      </div>
+    </div>
+    <hr>
+   
+  </div>
+  
+
+ <!-- Footer -->
+<footer class="w3-container w3-padding-32 w3-dark-grey">
+    <div class="w3-row-padding">
+      <div class="w3-third">
+        <h3>CONNECT</h3>
+        <p>
+          <a href="https://linkedin.com/in/rao-muhammad-zubair" target="_blank"
+             class="w3-hover-text-blue w3-hover-opacity"
+             style="text-decoration: none; display: inline-flex; align-items: center;">
+            <i class="fa fa-linkedin w3-xlarge w3-margin-right"></i>LinkedIn
+          </a>
+        </p>
+      </div>
+    </div>
+  </footer>
+  
+  
+  <div class="w3-black w3-center w3-padding-24">© 2025 Developed By Rao Muhammad Zubair</div>
+
+<!-- End page content -->
+</div>
+
+<script>
+// Script to open and close sidebar
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+}
+
+// Animate skill bars and project cards on scroll
+document.addEventListener("DOMContentLoaded", function() {
+  const skillBars = document.querySelectorAll(".skill-bar");
+  const projectCards = document.querySelectorAll(".w3-third.w3-container");
+
+  function animateOnScroll() {
+    skillBars.forEach(bar => {
+      const rect = bar.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom >= 0) {
+        bar.style.width = bar.getAttribute("data-width");
+      }
+    });
+
+    projectCards.forEach(card => {
+      const rect = card.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom >= 0) {
+        card.classList.add("w3-animate-zoom");
+      }
+    });
+  }
+
+  window.addEventListener("scroll", animateOnScroll);
+  animateOnScroll(); // Trigger on load
+});
+</script>
+
+</body>
+</html>
