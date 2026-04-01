@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import ResumeDownloadButton from '@/components/ResumeDownloadButton';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -129,11 +130,15 @@ const Hero = () => {
 
         <p
           ref={subheadingRef}
-          className="text-lg md:text-xl text-white/80 font-light tracking-wide drop-shadow-lg"
+          className="text-xl md:text-3xl text-white/80 font-light tracking-wide drop-shadow-lg"
         >
           Full-Stack Developer <span className="text-white/50">|</span> AI/ML
           Enthusiast
         </p>
+
+        <div className="mt-8 flex items-center justify-center">
+          <ResumeDownloadButton />
+        </div>
 
         {/* Scroll indicator */}
         <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">

@@ -27,6 +27,14 @@ npm run build
 npm run preview
 ```
 
+## Resume Download Setup
+
+Place your resume PDF at:
+
+- `public/resume.pdf`
+
+The website resume buttons are already wired to this path and will trigger a download in production.
+
 ## First-Time Git Setup
 
 Run these in the project root:

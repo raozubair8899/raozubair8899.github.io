@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Mail, MapPin, Phone, Send, Linkedin, Github } from 'lucide-react';
 import { toast } from 'sonner';
+import ResumeDownloadButton from '@/components/ResumeDownloadButton';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -142,7 +143,7 @@ const Contact = () => {
             </div>
 
             {/* Social links */}
-            <div className="flex gap-4">
+            <div className="flex flex-wrap items-center gap-4">
               <a
                 href="https://linkedin.com/in/rao-muhammad-zubair"
                 target="_blank"
@@ -161,6 +162,11 @@ const Contact = () => {
               >
                 <Github className="w-5 h-5" />
               </a>
+
+              <ResumeDownloadButton
+                className="bg-white/10 text-white border border-white/20 hover:bg-white/20 shadow-none"
+                label="Resume"
+              />
             </div>
           </div>
 
@@ -232,7 +238,7 @@ const Contact = () => {
               <span className="text-white font-semibold text-lg">
                 Rao Muhammad Zubair
               </span>
-              <p className="text-white/40 text-sm">
+              <p className="text-white/40 text-md">
                 Full-Stack Developer | AI/ML Enthusiast 
               </p>
             </div>
