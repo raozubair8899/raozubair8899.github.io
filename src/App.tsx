@@ -20,22 +20,27 @@ function App() {
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
-    // Initialize Lenis smooth scroll
-    lenisRef.current = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      smoothWheel: true,
-    });
+    // Check if touch device - disable Lenis on mobile for better performance
+    const isTouch = window.matchMedia('(pointer: coarse)').matches;
+    
+    if (!isTouch) {
+      // Initialize Lenis smooth scroll only on desktop
+      lenisRef.current = new Lenis({
+        duration: 0.8,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: 'vertical',
+        smoothWheel: true,
+      });
 
-    // Connect Lenis to GSAP ScrollTrigger
-    lenisRef.current.on('scroll', ScrollTrigger.update);
+      // Connect Lenis to GSAP ScrollTrigger
+      lenisRef.current.on('scroll', ScrollTrigger.update);
 
-    gsap.ticker.add((time) => {
-      lenisRef.current?.raf(time * 1000);
-    });
+      gsap.ticker.add((time) => {
+        lenisRef.current?.raf(time * 1000);
+      });
 
-    gsap.ticker.lagSmoothing(0);
+      gsap.ticker.lagSmoothing(0);
+    }
 
     // Refresh ScrollTrigger on load
     ScrollTrigger.refresh();

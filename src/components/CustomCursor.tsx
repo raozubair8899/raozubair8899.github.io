@@ -1,15 +1,26 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 
 const CustomCursor = () => {
   const cursorRef = useRef<HTMLDivElement>(null);
   const cursorDotRef = useRef<HTMLDivElement>(null);
-  const isTouch = useRef(false);
+  const [isTouch, setIsTouch] = useState(true); // Default to true to prevent flash
 
   useEffect(() => {
     // Check if touch device
-    isTouch.current = window.matchMedia('(pointer: coarse)').matches;
-    if (isTouch.current) return;
+    const checkTouch = () => {
+      const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+      setIsTouch(isTouchDevice);
+    };
+    
+    checkTouch();
+    window.addEventListener('resize', checkTouch);
+
+    return () => window.removeEventListener('resize', checkTouch);
+  }, []);
+
+  useEffect(() => {
+    if (isTouch) return;
 
     const cursor = cursorRef.current;
     const cursorDot = cursorDotRef.current;
@@ -33,23 +44,23 @@ const CustomCursor = () => {
     const handleMouseEnter = () => {
       gsap.to([cursor, cursorDot], {
         opacity: 1,
-        duration: 0.3,
+        duration: 0.2,
       });
     };
 
     const handleMouseLeave = () => {
       gsap.to([cursor, cursorDot], {
         opacity: 0,
-        duration: 0.3,
+        duration: 0.2,
       });
     };
 
     // Handle hover on interactive elements
     const handleElementHover = () => {
       gsap.to(cursor, {
-        scale: 1.5,
+        scale: 1.3,
         borderColor: 'rgba(255, 255, 255, 0.8)',
-        duration: 0.3,
+        duration: 0.2,
         ease: 'power2.out',
       });
     };
@@ -58,12 +69,12 @@ const CustomCursor = () => {
       gsap.to(cursor, {
         scale: 1,
         borderColor: 'rgba(255, 255, 255, 0.5)',
-        duration: 0.3,
+        duration: 0.2,
         ease: 'power2.out',
       });
     };
 
-    window.addEventListener('mousemove', moveCursor);
+    window.addEventListener('mousemove', moveCursor, { passive: true });
     document.addEventListener('mouseenter', handleMouseEnter);
     document.addEventListener('mouseleave', handleMouseLeave);
 
@@ -83,25 +94,23 @@ const CustomCursor = () => {
         el.removeEventListener('mouseleave', handleElementLeave);
       });
     };
-  }, []);
+  }, [isTouch]);
 
   // Don't render on touch devices
-  if (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) {
-    return null;
-  }
+  if (isTouch) return null;
 
   return (
     <>
       {/* Outer ring */}
       <div
         ref={cursorRef}
-        className="fixed top-0 left-0 w-10 h-10 -ml-5 -mt-5 rounded-full border border-white/50 pointer-events-none z-[9999] mix-blend-difference hidden md:block"
+        className="fixed top-0 left-0 w-8 h-8 -ml-4 -mt-4 rounded-full border border-white/50 pointer-events-none z-[9999] mix-blend-difference"
         style={{ opacity: 0 }}
       />
       {/* Inner dot */}
       <div
         ref={cursorDotRef}
-        className="fixed top-0 left-0 w-1 h-1 -ml-0.5 -mt-0.5 rounded-full bg-white pointer-events-none z-[9999] mix-blend-difference hidden md:block"
+        className="fixed top-0 left-0 w-1 h-1 -ml-0.5 -mt-0.5 rounded-full bg-white pointer-events-none z-[9999] mix-blend-difference"
         style={{ opacity: 0 }}
       />
     </>

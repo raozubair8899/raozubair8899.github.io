@@ -36,12 +36,15 @@
   
   html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
   }
   
   body {
     @apply bg-[#050505] text-white antialiased;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   
   ::selection {
@@ -52,7 +55,7 @@
 
 @layer utilities {
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-white/60;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-white/70;
   }
   
   .glass {
@@ -70,11 +73,25 @@
   .text-balance {
     text-wrap: balance;
   }
+  
+  /* Line clamp for text truncation */
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar - thinner on mobile */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 4px;
+}
+
+@media (min-width: 640px) {
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
 }
 
 ::-webkit-scrollbar-track {
@@ -103,70 +120,84 @@ html.lenis {
   overscroll-behavior: contain;
 }
 
-/* Animation utilities */
+/* Animation utilities - faster durations */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+  50% { transform: translateY(-8px); }
 }
 
 @keyframes pulse-glow {
   0%, 100% { opacity: 0.4; }
-  50% { opacity: 0.8; }
-}
-
-@keyframes gradient-shift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  50% { opacity: 0.7; }
 }
 
 .animate-float {
-  animation: float 6s ease-in-out infinite;
+  animation: float 5s ease-in-out infinite;
 }
 
 .animate-pulse-glow {
-  animation: pulse-glow 4s ease-in-out infinite;
+  animation: pulse-glow 3s ease-in-out infinite;
 }
 
-.animate-gradient {
-  background-size: 200% 200%;
-  animation: gradient-shift 8s ease infinite;
+/* Touch device optimizations */
+@media (pointer: coarse) {
+  /* Disable hover effects on touch devices */
+  .hover\:bg-white\/10:hover,
+  .hover\:text-white:hover {
+    transition: none;
+  }
+  
+  /* Larger touch targets */
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
 }
 
-/* Magnetic button effect */
-.magnetic-btn {
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
-/* Link underline animation */
-.link-underline {
-  position: relative;
+/* Mobile-specific fixes */
+@supports (-webkit-touch-callout: none) {
+  /* iOS specific fixes */
+  .min-h-screen {
+    min-height: -webkit-fill-available;
+  }
 }
 
-.link-underline::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: white;
-  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+/* Fix for video on mobile */
+video {
+  max-width: 100%;
+  height: auto;
 }
 
-.link-underline:hover::after {
-  width: 100%;
+/* Ensure images are responsive */
+img {
+  max-width: 100%;
+  height: auto;
 }
 
-/* Section transitions */
-.section-fade {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
-              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+/* Better tap highlight on mobile */
+* {
+  -webkit-tap-highlight-color: transparent;
 }
 
-.section-fade.visible {
-  opacity: 1;
-  transform: translateY(0);
+/* Focus styles for accessibility */
+:focus-visible {
+  outline: 2px solid rgba(59, 130, 246, 0.5);
+  outline-offset: 2px;
+}
+
+/* Prevent text selection on interactive elements */
+button, a {
+  user-select: none;
 }

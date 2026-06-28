@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import ResumeDownloadButton from '@/components/ResumeDownloadButton';
+import { ChevronDown } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -10,118 +10,121 @@ const Hero = () => {
   const headingRef = useRef<HTMLHeadingElement>(null);
   const subheadingRef = useRef<HTMLParagraphElement>(null);
   const taglineRef = useRef<HTMLParagraphElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
+  const particlesRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!sectionRef.current) return;
 
-    // Initial reveal animation
-    const tl = gsap.timeline({ delay: 0.5 });
-
-    tl.fromTo(
-      headingRef.current,
-      { y: 80, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1.2, ease: 'power3.out' }
-    )
-      .fromTo(
-        subheadingRef.current,
-        { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1, ease: 'power3.out' },
-        '-=0.7'
-      )
-      .fromTo(
-        taglineRef.current,
-        { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' },
-        '-=0.5'
-      );
-
-    // Scroll-triggered exit animation
-    const scrollTrigger = ScrollTrigger.create({
-      trigger: sectionRef.current,
-      start: 'top top',
-      end: '+=100%',
-      pin: true,
-      scrub: 0.5,
-      onUpdate: (self) => {
-        const progress = self.progress;
-        if (progress > 0.3) {
-          const exitProgress = (progress - 0.3) / 0.7;
-          gsap.set(headingRef.current, {
-            opacity: 1 - exitProgress,
-            y: -exitProgress * 50,
-            filter: `blur(${exitProgress * 10}px)`,
-          });
-          gsap.set(subheadingRef.current, {
-            opacity: 1 - exitProgress,
-            y: -exitProgress * 30,
-          });
-          gsap.set(taglineRef.current, {
-            opacity: 1 - exitProgress,
-          });
-        }
+    // Parallax effect for background image
+    gsap.to(imageRef.current, {
+      yPercent: 20,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: 'top top',
+        end: 'bottom top',
+        scrub: 0.5,
       },
     });
 
+    // Fast initial reveal animation
+    const tl = gsap.timeline({ delay: 0.3 });
+
+    tl.fromTo(
+      taglineRef.current,
+      { y: 20, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }
+    )
+      .fromTo(
+        headingRef.current,
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' },
+        '-=0.3'
+      )
+      .fromTo(
+        subheadingRef.current,
+        { y: 25, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' },
+        '-=0.4'
+      );
+
+    // Floating particles animation
+    const particles = particlesRef.current?.querySelectorAll('.particle');
+    if (particles) {
+      particles.forEach((particle, i) => {
+        gsap.to(particle, {
+          y: -30 - Math.random() * 50,
+          x: (Math.random() - 0.5) * 30,
+          opacity: 0,
+          duration: 3 + Math.random() * 2,
+          repeat: -1,
+          delay: i * 0.5,
+          ease: 'power1.out',
+        });
+      });
+    }
+
     return () => {
-      scrollTrigger.kill();
+      ScrollTrigger.getAll().forEach(st => st.kill());
     };
   }, []);
 
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen min-h-[100svh] w-full flex items-center justify-center overflow-hidden"
+      className="relative h-screen w-full flex items-center justify-center overflow-hidden"
       id="hero"
     >
-      {/* 90% viewport video frame with crop-to-fill */}
-      <div
-        className="absolute left-1/2 top-1/2 w-[90vw] h-[90svh] -translate-x-1/2 -translate-y-1/2 overflow-hidden bg-black"
+      {/* Cinematic Background Image - Horse on Clouds */}
+      <div 
+        ref={imageRef}
+        className="absolute inset-0 w-full h-[120%] -top-[10%]"
         style={{ zIndex: 0 }}
       >
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          className="absolute inset-0 w-full h-full object-cover object-center"
-        >
-          <source src="/hero-video.mp4" type="video/mp4" />
-        </video>
+        <img
+          src="/images/hero-horse.png"
+          alt="Majestic horse galloping on clouds"
+          className="w-full h-full object-cover"
+        />
       </div>
 
-      {/* Overlay 1: Soft dark gradient for readability */}
+      {/* Dark overlay for readability */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.6) 100%)',
+          background: 'linear-gradient(to bottom, rgba(5,5,5,0.5) 0%, rgba(5,5,5,0.3) 40%, rgba(5,5,5,0.6) 100%)',
           zIndex: 1,
         }}
       />
 
-      {/* Overlay 2: Subtle glass haze effect */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backdropFilter: 'blur(1px)',
-          zIndex: 2,
-        }}
-      />
+      {/* Floating particles - ethereal effect */}
+      <div ref={particlesRef} className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 2 }}>
+        {[...Array(12)].map((_, i) => (
+          <div
+            key={i}
+            className="particle absolute w-1 h-1 bg-white/30 rounded-full"
+            style={{
+              left: `${10 + Math.random() * 80}%`,
+              top: `${60 + Math.random() * 30}%`,
+            }}
+          />
+        ))}
+      </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
+      <div className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto">
+        {/* Literature-inspired quote */}
         <p
           ref={taglineRef}
-          className="text-white/70 text-sm md:text-base tracking-[0.3em] uppercase mb-6 drop-shadow-lg"
+          className="text-white/60 text-xs sm:text-sm tracking-[0.25em] sm:tracking-[0.3em] uppercase mb-4 sm:mb-6 font-light italic"
         >
-          Building Software That Moves People
+          &ldquo;The wind of heaven is that which blows between a horse&apos;s ears.&rdquo;
         </p>
 
         <h1
           ref={headingRef}
-          className="text-5xl md:text-7xl lg:text-8xl font-bold text-white tracking-tight mb-4 drop-shadow-2xl"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white tracking-tight mb-3 sm:mb-4"
         >
           Rao Muhammad
           <br />
@@ -130,22 +133,14 @@ const Hero = () => {
 
         <p
           ref={subheadingRef}
-          className="text-xl md:text-3xl text-white/80 font-light tracking-wide drop-shadow-lg"
+          className="text-base sm:text-lg md:text-xl text-white/80 font-light tracking-wide"
         >
-          Full-Stack Developer <span className="text-white/50">|</span> AI/ML
-          Enthusiast
+          Full-Stack Developer <span className="text-white/40 mx-2">|</span> AI/ML Enthusiast
         </p>
 
-        <div className="mt-8 flex items-center justify-center">
-          <ResumeDownloadButton />
-        </div>
-
         {/* Scroll indicator */}
-        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-          <span className="text-white/50 text-xs tracking-widest uppercase drop-shadow">
-            Scroll
-          </span>
-          <div className="w-px h-12 bg-gradient-to-b from-white/50 to-transparent" />
+        <div className="absolute -bottom-6 sm:-bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+          <ChevronDown className="w-5 h-5 sm:w-6 sm:h-6 text-white/40 animate-bounce" />
         </div>
       </div>
     </section>
